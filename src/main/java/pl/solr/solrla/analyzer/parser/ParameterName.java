@@ -7,5 +7,5 @@ package pl.solr.solrla.analyzer.parser;
  *
  */
 public enum ParameterName {
-    Q, FQ, UNKNOWN;
+    Q, FQ, QF, BF, PF, MM, START, ROWS, DEFTYPE, FACET, FACETFIELD, FACETQUERY, FACETRANGE, FACETDATE, GROUP, GROUPFIELD, UNKNOWN;
 }
