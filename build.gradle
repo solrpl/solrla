@@ -6,6 +6,8 @@ apply plugin: 'code-quality'
 version = '0.0.1-SNAPSHOT'
 group = 'pl.solr.solrla'
 
+checkstyleConfigFileName = rootProject.file('checkstyle.xml')
+
 repositories {
     mavenLocal()
     mavenCentral()
