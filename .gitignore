@@ -2,5 +2,6 @@
 .project
 .settings
 .gradle
+.checkstyle
 bin
 build

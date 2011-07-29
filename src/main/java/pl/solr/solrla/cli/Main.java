@@ -8,65 +8,46 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 
+import pl.solr.solrla.analyzer.LogAnalyzer;
+import pl.solr.solrla.analyzer.LogAnalyzerArguments;
+
 /**
  * Main class for usage from command line interface.
  * 
  * @author Marek Rogoziński
- *
+ * 
  */
-@SuppressWarnings("static-access")
 public class Main {
-	private static final Options options = new Options();
-	
-	static {
-		options.addOption(OptionBuilder
-							.withArgName("class")
-							.withLongOpt("parser")
-							.hasArgs()
-							.withDescription("parser used to process input data")
-							.create());
-		options.addOption(OptionBuilder
-							.withArgName("class")
-							.withLongOpt("inputHandler")
-							.hasArgs()
-							.withDescription("handler used to read input")
-							.create());
-		options.addOption(OptionBuilder
-							.withArgName("class")
-							.withLongOpt("outputHandler")
-							.hasArgs()
-							.withDescription("handler used to write output")
-							.create());
-		options.addOption(OptionBuilder
-				.withArgName("location")
-				.withLongOpt("input")
-				.hasArgs()
-				.withDescription("location of input data")
-				.isRequired()
-				.create());
-		options.addOption(OptionBuilder
-				.withArgName("location")
-				.withLongOpt("output")
-				.hasArgs()
-				.withDescription("location for output")
-				.create());
-	}
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args
+	 *            command line arguments
+	 */
 	public static void main(final String[] args) {
-		CommandLineParser parser = new PosixParser();
-		try {
-			CommandLine commandLine = parser.parse(options, args);
-			//TODO c
-			help();
-		} catch (ParseException e) {
-			help();
-		}
-
+		Main m = new Main();
+		m.run(args);
 	}
-	
-	private static void help() {
-		HelpFormatter formatter = new HelpFormatter();
-		formatter.printHelp( "java -jar <archive_name>", options, true );
+
+	/**
+	 * Parses command line arguments.
+	 * 
+	 * @param args
+	 *            command line arguments
+	 * @return parameters or null if error
+	 */
+	protected LogAnalyzerArguments parseArgs(final String[] args) {
+		CommandLineArgumentParser parser = new CommandLineArgumentParser();
+		return parser.parse(args);
+	}
+
+	protected void run(final String[] args) {
+		LogAnalyzerArguments params = parseArgs(args);
+		if (params != null) {
+			LogAnalyzer la = new LogAnalyzer(params);
+			la.run();
+		}
 	}
 
 }
