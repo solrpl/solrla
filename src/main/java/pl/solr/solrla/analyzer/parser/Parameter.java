@@ -1,5 +1,7 @@
 package pl.solr.solrla.analyzer.parser;
 
+import java.util.List;
+
 /** 
  * Query parameter. 
  * 
@@ -18,4 +20,16 @@ public interface Parameter {
      * @return parameter value as string
      */
     String getValue();
+    
+    /** 
+     * Adds value of the parameter. 
+     * @param value value
+     */
+    void addValue(String value);
+    
+    /** 
+     * Return the parameter values. 
+     * @return list of values or empty list
+     */
+    List<String> getValues();
 }
