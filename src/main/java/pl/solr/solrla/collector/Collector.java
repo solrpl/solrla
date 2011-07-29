@@ -20,4 +20,9 @@ public interface Collector<T> {
      * @return collection result
      */
     T getCollectResult();
+    
+    /** 
+     * resets the collector.
+     */
+    void reset();
 }

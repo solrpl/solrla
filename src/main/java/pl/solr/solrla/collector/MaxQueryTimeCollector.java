@@ -30,4 +30,11 @@ public class MaxQueryTimeCollector implements Collector<Long> {
     public Long getCollectResult() {
         return maxTime;
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public void reset() {
+        maxTime = 0l;
+    }
 }
