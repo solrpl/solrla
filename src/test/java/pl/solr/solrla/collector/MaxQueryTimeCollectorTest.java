@@ -1,3 +1,5 @@
+package pl.solr.solrla.collector;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
