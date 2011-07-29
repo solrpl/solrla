@@ -53,6 +53,7 @@ public class CommandLineArgumentParserTest {
 		assertTrue(args.getInputHandler() instanceof InputHandlerForTesting);
 		assertEquals("/tmp", args.getInputHandler().getLocation());
 		assertTrue(args.getOutputHandler() instanceof ConsoleOutputHandler);
+		assertNull(args.getOutputHandler().getLocation());
 	}
 
 	/**
