@@ -1,4 +1,4 @@
-package pl.solr.log.analyzer.parser;
+package pl.solr.solrla.analyzer.parser;
 
 import java.util.Date;
 import java.util.List;

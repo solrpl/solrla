@@ -1,4 +1,4 @@
-package pl.solr.log.analyzer.parser;
+package pl.solr.solrla.analyzer.parser;
 
 /** 
  * Query parameter name.
