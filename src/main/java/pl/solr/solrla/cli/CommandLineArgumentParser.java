@@ -2,58 +2,75 @@ package pl.solr.solrla.cli;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.GnuParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.cli.PosixParser;
 
 import pl.solr.solrla.analyzer.LogAnalyzerArguments;
 
+/**
+ * Parser for command line parameters.
+ *
+ * @author Marek Rogoziński
+ *
+ */
 @SuppressWarnings("static-access")
 public class CommandLineArgumentParser {
 	/** command line options. */
-	private static final Options options = new Options();
+	private final Options options = new Options();
 
-	static {
+	 {
 		options.addOption(OptionBuilder
 							.withArgName("class")
 							.withLongOpt("parser")
-							.hasArgs()
+							.hasArg()
+							.withType(Class.class)
 							.withDescription("parser used to process input data")
 							.create());
 		options.addOption(OptionBuilder
 							.withArgName("class")
 							.withLongOpt("inputHandler")
-							.hasArgs()
+							.hasArg()
+							.withType(Class.class)
 							.withDescription("handler used to read input")
 							.create());
 		options.addOption(OptionBuilder
 							.withArgName("class")
 							.withLongOpt("outputHandler")
-							.hasArgs()
+							.hasArg()
+							.withType(Class.class)
 							.withDescription("handler used to write output")
 							.create());
 		options.addOption(OptionBuilder
 				.withArgName("location")
 				.withLongOpt("input")
-				.hasArgs()
+				.hasArg()
+				.withType(String.class)
 				.withDescription("location of input data")
 				.isRequired()
 				.create());
 		options.addOption(OptionBuilder
 				.withArgName("location")
 				.withLongOpt("output")
-				.hasArgs()
+				.hasArg()
+				.withType(String.class)
 				.withDescription("location for output")
 				.create());
 	}
 
-	public LogAnalyzerArguments parse(final String[] args) {
-		CommandLineParser parser = new PosixParser();
+	public final LogAnalyzerArguments parse(final String[] args) {
+		CommandLineParser parser = new GnuParser();
 		try {
 			CommandLine commandLine = parser.parse(options, args);
-			//TODO
+			LogAnalyzerArguments laa = new LogAnalyzerArguments();
+			if (commandLine.hasOption("inputHandler")) {
+				laa.setInputHandler(commandLine.getOptionValue("inputHandler"));
+			}
+			laa.setInputLocation(commandLine.getOptionValue("input"));
+			//TODO.
+			return laa;
 		} catch (ParseException e) {
 			System.err.println("Error: " + e.getMessage());
 			help();
@@ -63,7 +80,7 @@ public class CommandLineArgumentParser {
 
 	private void help() {
 		HelpFormatter formatter = new HelpFormatter();
-		formatter.printHelp( "java -jar <archive_name>", options, true );
+		formatter.printHelp("java -jar <archive_name>", options, true);
 	}
 
 }
