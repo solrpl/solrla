@@ -9,6 +9,8 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import pl.solr.solrla.analyzer.LogAnalyzerArguments;
+import pl.solr.solrla.input.InputHandler;
+import pl.solr.solrla.output.OutputHandler;
 
 /**
  * Parser for command line parameters.
@@ -66,12 +68,23 @@ public class CommandLineArgumentParser {
 			CommandLine commandLine = parser.parse(options, args);
 			LogAnalyzerArguments laa = new LogAnalyzerArguments();
 			if (commandLine.hasOption("inputHandler")) {
-				laa.setInputHandler(commandLine.getOptionValue("inputHandler"));
+				@SuppressWarnings("unchecked")
+				Class<InputHandler> cl =
+					(Class<InputHandler>) commandLine.getParsedOptionValue("inputHandler");
+				laa.setInputHandler(cl);
 			}
 			laa.setInputLocation(commandLine.getOptionValue("input"));
-			//TODO.
+			if (commandLine.hasOption("outputHandler")) {
+				@SuppressWarnings("unchecked")
+				Class<OutputHandler> cl =
+					(Class<OutputHandler>) commandLine.getParsedOptionValue("outputHandler");
+				laa.setOutputHandler(cl);
+			}
+			if (commandLine.hasOption("output")) {
+				laa.setOutputLocation(commandLine.getOptionValue("output"));
+			}
 			return laa;
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 			help();
 		}
