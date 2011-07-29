@@ -1,7 +1,7 @@
 package pl.solr.solrla.analyzer.parser;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 /** 
  * Line of log.
@@ -23,10 +23,10 @@ public interface LogLine {
     Long time();
     
     /** 
-     * Return list of query parameters. 
-     * @return query parameters list
+     * Return map of query parameters. 
+     * @return query parameters map
      */
-    List<Parameter> parameters();
+    Map<ParameterName, Parameter> parameters();
     
     /** 
      * Return core name.
@@ -39,4 +39,17 @@ public interface LogLine {
      * @return query date
      */
     Date queryTime();
+    
+    /** 
+     * Returns full query.
+     * @return full query
+     */
+    String query();
+    
+    /** 
+     * Adds parameter. 
+     * @param name parameter name
+     * @param value parameter value
+     */
+    void addParameter(ParameterName name, String value);
 }
