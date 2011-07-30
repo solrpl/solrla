@@ -7,7 +7,7 @@ import pl.solr.solrla.analyzer.parser.Parameter;
 import pl.solr.solrla.analyzer.parser.ParameterName;
 
 /**
- * Name value parameter implementation.
+ * Name value parameter implementation. 
  * 
  * @author Rafał Kuć
  * 
