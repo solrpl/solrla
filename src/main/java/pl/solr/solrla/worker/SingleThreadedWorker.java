@@ -3,6 +3,7 @@ package pl.solr.solrla.worker;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.solr.solrla.analyzer.parser.LogLine;
 import pl.solr.solrla.collector.Collector;
 import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.OutputHandler;
@@ -79,6 +80,15 @@ public class SingleThreadedWorker implements Worker {
 
 	public Parser getParser() {
 		return parser;
+	}
+
+	public void run() {
+		LogLine line;
+		while((line = parser.readLine(inputHandler)) != null) {
+			for (Collector col : collectors) {
+				col.collect(line);
+			}
+		}
 	}
 
 

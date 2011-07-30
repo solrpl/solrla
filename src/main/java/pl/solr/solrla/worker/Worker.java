@@ -29,4 +29,6 @@ public interface Worker {
 
 	void setParser(Parser parser);
 
+	void run();
+
 }
