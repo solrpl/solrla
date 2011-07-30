@@ -19,4 +19,9 @@ public class InputHandlerForTesting implements InputHandler {
 		this.location = location;
 	}
 
+	public String getNextItem() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -25,4 +25,9 @@ public class DirectoryInputHandler implements InputHandler {
 
 	}
 
+	public String getNextItem() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
