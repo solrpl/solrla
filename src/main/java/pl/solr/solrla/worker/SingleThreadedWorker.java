@@ -25,9 +25,18 @@ public class SingleThreadedWorker implements Worker {
     /** Input handler. */
     private InputHandler inputHandler;
 
-	private Parser parser;
+    /** Parser. */
+	private Parser parser;	
 
-
+	public void run() {
+        LogLine line;
+        while((line = parser.readLine(inputHandler)) != null) {
+            for (Collector col : collectors) {
+                col.collect(line);
+            }
+        }
+    }
+	
     public SingleThreadedWorker(InputHandler inputHandler,
 			OutputHandler outputHandler, Parser parser) {
     	this.inputHandler = inputHandler;
@@ -81,15 +90,4 @@ public class SingleThreadedWorker implements Worker {
 	public Parser getParser() {
 		return parser;
 	}
-
-	public void run() {
-		LogLine line;
-		while((line = parser.readLine(inputHandler)) != null) {
-			for (Collector col : collectors) {
-				col.collect(line);
-			}
-		}
-	}
-
-
 }

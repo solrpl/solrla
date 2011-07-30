@@ -8,27 +8,69 @@ import pl.solr.solrla.output.OutputHandler;
 import pl.solr.solrla.parser.Parser;
 
 public interface Worker {
+    /**
+     * Add a new collector.
+     * 
+     * @param collector
+     *            collector
+     */
+    void addCollector(Collector collector);
 
-	/** 
-	 * Add a new collector. 
-	 * @param collector collector
-	 */
-	void addCollector(Collector collector);
+    /**
+     * Sets collectors.
+     * 
+     * @param collectors
+     *            collectors
+     */
+    void setCollectors(List<Collector> collectors);
 
-	void setCollectors(List<Collector> collectors);
+    /**
+     * Sets output handler
+     * 
+     * @param outputHandler
+     *            output handler
+     */
+    void setOutputHandler(OutputHandler outputHandler);
 
-	void setOutputHandler(OutputHandler outputHandler);
+    /**
+     * Sets input handler
+     * 
+     * @param inputHandler
+     *            input handler
+     */
+    void setInputHandler(InputHandler inputHandler);
 
-	void setInputHandler(InputHandler inputHandler);
+    /**
+     * Returns input handler.
+     * 
+     * @return input handler
+     */
+    InputHandler getInputHandler();
 
-	InputHandler getInputHandler();
+    /**
+     * Returns output handler
+     * 
+     * @return output handler
+     */
+    OutputHandler getOutputHandler();
 
-	OutputHandler getOutputHandler();
+    /**
+     * Returns parser.
+     * 
+     * @return parser
+     */
+    Parser getParser();
 
-	Parser getParser();
+    /**
+     * Sets parser.
+     * 
+     * @param parser
+     *            parser
+     */
+    void setParser(Parser parser);
 
-	void setParser(Parser parser);
-
-	void run();
-
+    /**
+     * Starts the main work.
+     */
+    void run();
 }
