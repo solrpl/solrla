@@ -10,6 +10,7 @@ import org.apache.commons.cli.Options;
 import pl.solr.solrla.analyzer.LogAnalyzerArguments;
 import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.OutputHandler;
+import pl.solr.solrla.parser.Parser;
 
 /**
  * Parser for command line parameters.
@@ -87,7 +88,14 @@ public class CommandLineArgumentParser {
 			if (commandLine.hasOption("output")) {
 				laa.setOutputLocation(commandLine.getOptionValue("output"));
 			}
+			if (commandLine.hasOption("parser")) {
+				@SuppressWarnings("unchecked")
+				Class<Parser> cl =
+					(Class<Parser>) commandLine.getParsedOptionValue("parser");
+				laa.setParser(cl);
+			}
 			return laa;
+
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 			help();

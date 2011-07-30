@@ -44,6 +44,8 @@ public class LogAnalyzerArguments {
 	public final void setInputHandler(final Class<? extends InputHandler> clazz) {
 		try {
 			InputHandler inputHandler = clazz.newInstance();
+			String loc = worker.getInputHandler().getLocation();
+			inputHandler.setLocation(loc);
 			worker.setInputHandler(inputHandler);
 		} catch (Exception e) {
 			throw Throwables.propagate(e);
@@ -57,6 +59,8 @@ public class LogAnalyzerArguments {
 	public void setOutputHandler(Class<? extends OutputHandler> clazz) {
 		try {
 			OutputHandler outputHandler = clazz.newInstance();
+			String loc = worker.getOutputHandler().getLocation();
+			outputHandler.setLocation(loc);
 			worker.setOutputHandler(outputHandler);
 		} catch (Exception e) {
 			throw Throwables.propagate(e);
@@ -65,6 +69,15 @@ public class LogAnalyzerArguments {
 
 	public void setOutputLocation(String location) {
 		worker.getOutputHandler().setLocation(location);
+	}
+
+	public void setParser(Class<? extends Parser> clazz) {
+		try {
+			Parser parser = clazz.newInstance();
+			worker.setParser(parser);
+		} catch (Exception e) {
+			throw Throwables.propagate(e);
+		}
 	}
 
 }

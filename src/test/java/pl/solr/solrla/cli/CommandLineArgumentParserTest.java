@@ -72,4 +72,19 @@ public class CommandLineArgumentParserTest {
 		assertEquals("STDOUT", args.getOutputHandler().getLocation());
 	}
 
+	/**
+	 * parser given.
+	 */
+	@Test
+	public final void withParser() {
+		LogAnalyzerArguments args = parser.parse(new String[]{
+				"--input",  "/tmp",
+				"--parser", "pl.solr.solrla.cli.ParserForTesting"});
+		assertNotNull(args);
+		assertTrue(args.getInputHandler() instanceof DirectoryInputHandler);
+		assertEquals("/tmp", args.getInputHandler().getLocation());
+		assertTrue(args.getOutputHandler() instanceof ConsoleOutputHandler);
+		assertNull(args.getOutputHandler().getLocation());
+		assertTrue(args.getParser() instanceof ParserForTesting);
+	}
 }

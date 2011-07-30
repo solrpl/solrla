@@ -27,4 +27,6 @@ public interface Worker {
 
 	Parser getParser();
 
+	void setParser(Parser parser);
+
 }
