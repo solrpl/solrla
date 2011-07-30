@@ -10,7 +10,7 @@ import pl.solr.solrla.output.OutputHandler;
 import pl.solr.solrla.parser.Parser;
 
 /** 
- * Worker. 
+ * Single threaded worker implementation.
  * 
  * @author Rafał Kuć
  *
@@ -28,6 +28,9 @@ public class SingleThreadedWorker implements Worker {
     /** Parser. */
 	private Parser parser;	
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void run() {
         LogLine line;
         while((line = parser.readLine(inputHandler)) != null) {
@@ -37,6 +40,12 @@ public class SingleThreadedWorker implements Worker {
         }
     }
 	
+	/** 
+	 * Constructor.
+	 * @param inputHandler input handler
+	 * @param outputHandler output handler
+	 * @param parser parser
+	 */
     public SingleThreadedWorker(InputHandler inputHandler,
 			OutputHandler outputHandler, Parser parser) {
     	this.inputHandler = inputHandler;
