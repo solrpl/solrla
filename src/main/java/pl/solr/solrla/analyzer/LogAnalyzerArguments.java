@@ -6,6 +6,9 @@ import pl.solr.solrla.input.DirectoryInputHandler;
 import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.ConsoleOutputHandler;
 import pl.solr.solrla.output.OutputHandler;
+import pl.solr.solrla.parser.Parser;
+import pl.solr.solrla.worker.SingleThreadedWorker;
+import pl.solr.solrla.worker.Worker;
 
 /**
  * Arguments for log analyzer process.
@@ -14,44 +17,52 @@ import pl.solr.solrla.output.OutputHandler;
  *
  */
 public class LogAnalyzerArguments {
-	/** class responsible for resolve and fetch input data. */
-	private InputHandler inputHandler = new DirectoryInputHandler();
-
-	/** class responsible for write results. */
-	private OutputHandler outputHandler = new ConsoleOutputHandler();
 
 	//TODO class responsible for parsing. -parser in command line
+	private Parser parser;
+
+	//TODO: add possibility od setting worker from command line
+	//Remember about ordering of setWorker, setInputHandler - can be various. Should get data
+	//from old worker to set them in new
+	/** class responsible for doing analysis. */ 
+	private Worker worker = new SingleThreadedWorker(new DirectoryInputHandler(), new ConsoleOutputHandler()); 
 
 	public final InputHandler getInputHandler() {
-		return inputHandler;
+		return worker.getInputHandler();
 	}
 
 	public final OutputHandler getOutputHandler() {
-		return outputHandler;
+		return worker.getOutputHandler();
+	}
+
+	public final Worker getWorker() {
+		return worker;
 	}
 
 	public final void setInputHandler(final Class<? extends InputHandler> clazz) {
 		try {
-			inputHandler = clazz.newInstance();
+			InputHandler inputHandler = clazz.newInstance();
+			worker.setInputHandler(inputHandler);
 		} catch (Exception e) {
 			throw Throwables.propagate(e);
 		}
 	}
 
 	public void setInputLocation(String location) {
-		inputHandler.setLocation(location);
+		worker.getInputHandler().setLocation(location);
 	}
 
 	public void setOutputHandler(Class<? extends OutputHandler> clazz) {
 		try {
-			outputHandler = clazz.newInstance();
+			OutputHandler outputHandler = clazz.newInstance();
+			worker.setOutputHandler(outputHandler);
 		} catch (Exception e) {
 			throw Throwables.propagate(e);
 		}
 	}
 
 	public void setOutputLocation(String location) {
-		outputHandler.setLocation(location);
+		worker.getOutputHandler().setLocation(location);
 	}
 
 }
