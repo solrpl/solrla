@@ -1,6 +1,7 @@
 package pl.solr.solrla.collector;
 
 import pl.solr.solrla.analyzer.parser.LogLine;
+import pl.solr.solrla.collector.result.CollectingResult;
 
 /** 
  * Statistics collector interface.
@@ -8,7 +9,7 @@ import pl.solr.solrla.analyzer.parser.LogLine;
  * @author Rafał Kuć
  *
  */
-public interface Collector<T> {
+public interface Collector {
     /** 
      * Processes the log line.
      * @param line log line
@@ -19,7 +20,7 @@ public interface Collector<T> {
      * Return the collection result. 
      * @return collection result
      */
-    T getCollectResult();
+    CollectingResult getCollectResult();
     
     /** 
      * resets the collector.

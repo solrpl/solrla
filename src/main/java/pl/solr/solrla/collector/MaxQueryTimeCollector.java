@@ -1,6 +1,8 @@
 package pl.solr.solrla.collector;
 
 import pl.solr.solrla.analyzer.parser.LogLine;
+import pl.solr.solrla.collector.result.CollectingResult;
+import pl.solr.solrla.collector.result.StringCollectingResult;
 
 /**
  * Collector that collects the maximum query execution time.
@@ -8,7 +10,7 @@ import pl.solr.solrla.analyzer.parser.LogLine;
  * @author Rafał Kuć
  *
  */
-public class MaxQueryTimeCollector implements Collector<Long> {
+public class MaxQueryTimeCollector implements Collector {
     /** Maximum query execution time. */
     private Long maxTime = 0l;
     
@@ -27,8 +29,8 @@ public class MaxQueryTimeCollector implements Collector<Long> {
     /**
      * {@inheritDoc}
      */
-    public Long getCollectResult() {
-        return maxTime;
+    public CollectingResult getCollectResult() {
+        return new StringCollectingResult(maxTime);
     }
     
     /**

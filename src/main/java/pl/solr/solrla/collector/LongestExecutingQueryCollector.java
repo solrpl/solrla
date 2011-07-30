@@ -1,6 +1,8 @@
 package pl.solr.solrla.collector;
 
 import pl.solr.solrla.analyzer.parser.LogLine;
+import pl.solr.solrla.collector.result.CollectingResult;
+import pl.solr.solrla.collector.result.StringCollectingResult;
 
 /** 
  * Collector for finding the longest executing query.
@@ -8,7 +10,7 @@ import pl.solr.solrla.analyzer.parser.LogLine;
  * @author Rafał Kuć
  *
  */
-public class LongestExecutingQueryCollector implements Collector<String> {
+public class LongestExecutingQueryCollector implements Collector {
     /** Query. */
     private String query;
     
@@ -30,8 +32,8 @@ public class LongestExecutingQueryCollector implements Collector<String> {
     /**
      * {@inheritDoc}
      */
-    public String getCollectResult() {
-        return query;
+    public CollectingResult getCollectResult() {
+        return new StringCollectingResult(query);
     }
 
     /**

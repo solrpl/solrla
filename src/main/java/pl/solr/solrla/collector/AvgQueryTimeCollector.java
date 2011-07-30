@@ -1,6 +1,8 @@
 package pl.solr.solrla.collector;
 
 import pl.solr.solrla.analyzer.parser.LogLine;
+import pl.solr.solrla.collector.result.CollectingResult;
+import pl.solr.solrla.collector.result.StringCollectingResult;
 
 /** 
  * Average query time collector.
@@ -8,7 +10,7 @@ import pl.solr.solrla.analyzer.parser.LogLine;
  * @author Rafał Kuć
  *
  */
-public class AvgQueryTimeCollector implements Collector<Long> {
+public class AvgQueryTimeCollector implements Collector {
     /** Number of lines. */
     private Long numberOfLines = 0l;
     
@@ -29,11 +31,11 @@ public class AvgQueryTimeCollector implements Collector<Long> {
     /**
      * {@inheritDoc}
      */
-    public Long getCollectResult() {
+    public CollectingResult getCollectResult() {
         if (numberOfLines == 0l) {
-            return 0l;
+            return new StringCollectingResult(0l);
         } else {
-            return queryTimeSum / numberOfLines;
+            return new StringCollectingResult(queryTimeSum / numberOfLines);
         }
     }
     

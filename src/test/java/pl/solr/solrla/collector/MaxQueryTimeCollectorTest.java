@@ -19,6 +19,6 @@ public class MaxQueryTimeCollectorTest extends TestCase {
         collector.collect(line1);
         collector.collect(line2);
         
-        assertTrue(100l == collector.getCollectResult());
+        assertEquals("100", collector.getCollectResult().getAsString());
     }
 }
