@@ -7,6 +7,7 @@ import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.ConsoleOutputHandler;
 import pl.solr.solrla.output.OutputHandler;
 import pl.solr.solrla.parser.Parser;
+import pl.solr.solrla.parser.StandardParser;
 import pl.solr.solrla.worker.SingleThreadedWorker;
 import pl.solr.solrla.worker.Worker;
 
@@ -18,14 +19,11 @@ import pl.solr.solrla.worker.Worker;
  */
 public class LogAnalyzerArguments {
 
-	//TODO class responsible for parsing. -parser in command line
-	private Parser parser;
-
 	//TODO: add possibility od setting worker from command line
 	//Remember about ordering of setWorker, setInputHandler - can be various. Should get data
 	//from old worker to set them in new
 	/** class responsible for doing analysis. */ 
-	private Worker worker = new SingleThreadedWorker(new DirectoryInputHandler(), new ConsoleOutputHandler()); 
+	private Worker worker = new SingleThreadedWorker(new DirectoryInputHandler(), new ConsoleOutputHandler(), new StandardParser()); 
 
 	public final InputHandler getInputHandler() {
 		return worker.getInputHandler();
@@ -37,6 +35,10 @@ public class LogAnalyzerArguments {
 
 	public final Worker getWorker() {
 		return worker;
+	}
+
+	public final Parser getParser() {
+		return worker.getParser();
 	}
 
 	public final void setInputHandler(final Class<? extends InputHandler> clazz) {

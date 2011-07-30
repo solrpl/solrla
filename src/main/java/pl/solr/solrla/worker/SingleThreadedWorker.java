@@ -6,6 +6,7 @@ import java.util.List;
 import pl.solr.solrla.collector.Collector;
 import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.OutputHandler;
+import pl.solr.solrla.parser.Parser;
 
 /** 
  * Worker. 
@@ -23,11 +24,14 @@ public class SingleThreadedWorker implements Worker {
     /** Input handler. */
     private InputHandler inputHandler;
 
+	private Parser parser;
+
 
     public SingleThreadedWorker(InputHandler inputHandler,
-			OutputHandler outputHandler) {
+			OutputHandler outputHandler, Parser parser) {
     	this.inputHandler = inputHandler;
     	this.outputHandler = outputHandler;
+    	this.parser = parser;
 	}
 
 	/* (non-Javadoc)
@@ -61,6 +65,10 @@ public class SingleThreadedWorker implements Worker {
         this.inputHandler = inputHandler;
     }
 
+    public final void setParser(Parser parser) {
+    	this.parser = parser;
+    }
+
 	public InputHandler getInputHandler() {
 		return inputHandler;
 	}
@@ -68,6 +76,10 @@ public class SingleThreadedWorker implements Worker {
 	public final OutputHandler getOutputHandler() {
 		return outputHandler;
 	}
-	
-	
+
+	public Parser getParser() {
+		return parser;
+	}
+
+
 }

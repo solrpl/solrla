@@ -5,6 +5,7 @@ import java.util.List;
 import pl.solr.solrla.collector.Collector;
 import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.OutputHandler;
+import pl.solr.solrla.parser.Parser;
 
 public interface Worker {
 
@@ -23,5 +24,7 @@ public interface Worker {
 	InputHandler getInputHandler();
 
 	OutputHandler getOutputHandler();
+
+	Parser getParser();
 
 }
