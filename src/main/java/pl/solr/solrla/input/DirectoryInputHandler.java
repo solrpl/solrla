@@ -1,14 +1,26 @@
 package pl.solr.solrla.input;
 
+/**
+ * Directory implementation of data source.
+ *
+ * @author Marek Rogoziński
+ *
+ */
 public class DirectoryInputHandler implements InputHandler {
-
+	/** filesystem location, for example: /home/solr/logs/*.log. */
 	private String location;
 
-	public String getLocation() {
+	/**
+	 * {@inheritDoc}
+	 */
+	public final String getLocation() {
 		return location;
 	}
 
-	public void setLocation(final String location) {
+	/**
+	 * {@inheritDoc}
+	 */
+	public final void setLocation(final String location) {
 		this.location = location;
 
 	}

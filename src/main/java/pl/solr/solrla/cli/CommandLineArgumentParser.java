@@ -6,7 +6,6 @@ import org.apache.commons.cli.GnuParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
 
 import pl.solr.solrla.analyzer.LogAnalyzerArguments;
 import pl.solr.solrla.input.InputHandler;
@@ -62,6 +61,11 @@ public class CommandLineArgumentParser {
 				.create());
 	}
 
+	/**
+	 * Parses array of parameters into arguments for log anayzer.
+	 * @param args array of parameters
+	 * @return arguments for log anayzer
+	 */
 	public final LogAnalyzerArguments parse(final String[] args) {
 		CommandLineParser parser = new GnuParser();
 		try {
@@ -91,6 +95,9 @@ public class CommandLineArgumentParser {
 		return null;
 	}
 
+	/**
+	 * Prints information about syntax.
+	 */
 	private void help() {
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.printHelp("java -jar <archive_name>", options, true);
