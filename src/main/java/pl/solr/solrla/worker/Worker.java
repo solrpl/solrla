@@ -1,5 +1,6 @@
 package pl.solr.solrla.worker;
 
+import java.io.IOException;
 import java.util.List;
 
 import pl.solr.solrla.collector.Collector;
@@ -78,5 +79,5 @@ public interface Worker {
     /**
      * Starts the main work.
      */
-    void run();
+    void run() throws IOException;
 }

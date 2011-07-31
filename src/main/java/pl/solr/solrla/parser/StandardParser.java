@@ -1,15 +1,14 @@
 package pl.solr.solrla.parser;
 
-import java.io.BufferedReader;
-
 import pl.solr.solrla.analyzer.parser.LogLine;
 
 /** 
  * Parser implementation {@link Parser}. 
  */
-public class StandardParser implements Parser {
+public class StandardParser extends AbstractLineParser {
 
-	public LogLine readLine(BufferedReader stream) {
+	@Override
+	LogLine parseLine(String line) {
 		// TODO Auto-generated method stub
 		return null;
 	}

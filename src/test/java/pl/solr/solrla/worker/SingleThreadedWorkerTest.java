@@ -1,13 +1,11 @@
 package pl.solr.solrla.worker;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
-import java.io.InputStream;
+import java.io.IOException;
 
 import org.junit.Test;
 
-import pl.solr.solrla.analyzer.parser.impl.SimpleLogLine;
 import pl.solr.solrla.input.ClasspathInputHandler;
 import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.OutputHandler;
@@ -17,7 +15,7 @@ import pl.solr.solrla.parser.StandardParser;
 public class SingleThreadedWorkerTest {
 
 	@Test
-	public void one() {
+	public void one() throws IOException {
 		InputHandler inputHandler = new ClasspathInputHandler();
 		inputHandler.setLocation("/log1.log");
 		OutputHandler outputHandler = mock(OutputHandler.class);

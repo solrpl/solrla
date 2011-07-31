@@ -40,8 +40,9 @@ public class SingleThreadedWorker implements Worker {
 
 	/**
 	 * {@inheritDoc}
+	 * @throws IOException 
 	 */
-	public final void run() {
+	public final void run() throws IOException {
 		LOG.debug("SingleThreadedWorkder.run() called");
         LogLine line;
         for (BufferedReader stream = inputHandler.nextStream(); stream != null; stream = inputHandler.nextStream()) {

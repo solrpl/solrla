@@ -1,5 +1,7 @@
 package pl.solr.solrla.cli;
 
+import java.io.IOException;
+
 import pl.solr.solrla.analyzer.LogAnalyzer;
 import pl.solr.solrla.analyzer.LogAnalyzerArguments;
 
@@ -23,8 +25,9 @@ public final class Main {
 	 *
 	 * @param args
 	 *            command line arguments
+	 * @throws IOException 
 	 */
-	public static void main(final String[] args) {
+	public static void main(final String[] args) throws IOException {
 		Main m = new Main();
 		m.run(args);
 	}
@@ -44,8 +47,9 @@ public final class Main {
 	/**
 	 * Run analyzers with proper parameters.
 	 * @param args command line parameters
+	 * @throws IOException 
 	 */
-	private void run(final String[] args) {
+	private void run(final String[] args) throws IOException {
 		LogAnalyzerArguments params = parseArgs(args);
 		if (params != null) {
 			LogAnalyzer la = new LogAnalyzer();

@@ -1,5 +1,7 @@
 package pl.solr.solrla.analyzer;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import pl.solr.solrla.cli.CommandLineArgumentParser;
@@ -14,7 +16,7 @@ public class LogAnalyzer1Test {
 	private LogAnalyzer analyzer = new LogAnalyzer();
 
 	@Test
-	public void one() {
+	public void one() throws IOException {
 		//TODO capture result & validation
 		LogAnalyzerArguments args = new CommandLineArgumentParser().parse(new String[]{
 				"--input",  "/log1.log",
