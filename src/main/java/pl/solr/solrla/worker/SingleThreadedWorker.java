@@ -1,7 +1,7 @@
 package pl.solr.solrla.worker;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class SingleThreadedWorker implements Worker {
 	public final void run() {
 		LOG.debug("SingleThreadedWorkder.run() called");
         LogLine line;
-        for (InputStream stream = inputHandler.nextStream(); stream != null; stream = inputHandler.nextStream()) {
+        for (BufferedReader stream = inputHandler.nextStream(); stream != null; stream = inputHandler.nextStream()) {
         	LOG.debug("SingleThreadedWorkder.run(): input stream: " + stream);
         	while ((line = parser.readLine(stream)) != null) {
         		LOG.debug("SingleThreadedWorkder.run(): input line: " + line);

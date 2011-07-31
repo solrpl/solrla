@@ -1,6 +1,6 @@
 package pl.solr.solrla.input;
 
-import java.io.InputStream;
+import java.io.BufferedReader;
 
 /**
  * Directory implementation of data source.
@@ -10,7 +10,7 @@ import java.io.InputStream;
  */
 public class DirectoryInputHandler extends AbstractInputHandler {
 
-	public InputStream nextStream() {
+	public BufferedReader nextStream() {
 		// TODO Auto-generated method stub
 		return null;
 	}

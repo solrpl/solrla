@@ -1,6 +1,6 @@
 package pl.solr.solrla.input;
 
-import java.io.InputStream;
+import java.io.BufferedReader;
 
 /**
  * Interface for specification of input.
@@ -21,6 +21,6 @@ public interface InputHandler {
 	 */
 	void setLocation(String location);
 
-	InputStream nextStream();
+	BufferedReader nextStream();
 
 }

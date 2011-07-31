@@ -1,6 +1,7 @@
 package pl.solr.solrla.input;
 
-import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /**
  * Input handler for reading log files from classpath.
@@ -16,10 +17,13 @@ public class ClasspathInputHandler extends AbstractInputHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public final InputStream nextStream() {
+	public final BufferedReader nextStream() {
 		if (!called) {
 			called = true;
-			return ClasspathInputHandler.class.getResourceAsStream(getLocation());
+			return new BufferedReader(
+					new InputStreamReader(
+							ClasspathInputHandler.class
+								.getResourceAsStream(getLocation())));
 		}
 		return null;
 	}

@@ -1,6 +1,6 @@
 package pl.solr.solrla.cli;
 
-import java.io.InputStream;
+import java.io.BufferedReader;
 
 import pl.solr.solrla.input.AbstractInputHandler;
 
@@ -12,7 +12,7 @@ import pl.solr.solrla.input.AbstractInputHandler;
  */
 public class InputHandlerForTesting extends AbstractInputHandler {
 
-	public InputStream nextStream() {
+	public BufferedReader nextStream() {
 		// TODO Auto-generated method stub
 		return null;
 	}
