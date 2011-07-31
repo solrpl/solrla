@@ -13,16 +13,16 @@ import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.OutputHandler;
 import pl.solr.solrla.parser.Parser;
 
-/** 
+/**
  * Single threaded worker implementation.
- * 
+ *
  * @author Rafał Kuć
  *
  */
 public class SingleThreadedWorker implements Worker {
     /** Collectors. */
-    protected List<Collector> collectors;
-    
+    private List<Collector> collectors;
+
     /** Output handler. */
     private OutputHandler outputHandler;
 
@@ -35,10 +35,10 @@ public class SingleThreadedWorker implements Worker {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void run() {
+	public final void run() {
         LogLine line;
         for (InputStream stream = inputHandler.nextStream(); stream != null; stream = inputHandler.nextStream()) {
-        	while((line = parser.readLine(stream)) != null) {
+        	while ((line = parser.readLine(stream)) != null) {
         		for (Collector col : collectors) {
         			col.collect(line);
         		}
@@ -57,49 +57,52 @@ public class SingleThreadedWorker implements Worker {
 	 * @param outputHandler output handler
 	 * @param parser parser
 	 */
-    public SingleThreadedWorker(InputHandler inputHandler,
-			OutputHandler outputHandler, Parser parser) {
+    public SingleThreadedWorker(final InputHandler inputHandler,
+			final OutputHandler outputHandler, final Parser parser) {
     	this.inputHandler = inputHandler;
     	this.outputHandler = outputHandler;
     	this.parser = parser;
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.solr.solrla.worker.Worker#addCollector(pl.solr.solrla.collector.Collector)
-	 */
-    public final void addCollector(Collector collector) {
+    /**
+     * {@inheritDoc}
+     */
+    public final void addCollector(final Collector collector) {
         if (collectors == null) {
             collectors = new ArrayList<Collector>();
         }
         collectors.add(collector);
     }
-    
-    /* (non-Javadoc)
-	 * @see pl.solr.solrla.worker.Worker#setCollectors(java.util.List)
-	 */
-    public final void setCollectors(List<Collector> collectors) {
+
+    /**
+     * {@inheritDoc}
+     */
+    public final void setCollectors(final List<Collector> collectors) {
         this.collectors = collectors;
     }
 
-    /* (non-Javadoc)
-	 * @see pl.solr.solrla.worker.Worker#setOutputHandler(pl.solr.solrla.output.OutputHandler)
-	 */
-    public final void setOutputHandler(OutputHandler outputHandler) {
+    /**
+     * {@inheritDoc}
+     */
+    public final void setOutputHandler(final OutputHandler outputHandler) {
         this.outputHandler = outputHandler;
     }
 
-    /* (non-Javadoc)
-	 * @see pl.solr.solrla.worker.Worker#setInputHandler(pl.solr.solrla.input.InputHandler)
-	 */
-    public final void setInputHandler(InputHandler inputHandler) {
+    /**
+     * {@inheritDoc}
+     */
+    public final void setInputHandler(final InputHandler inputHandler) {
         this.inputHandler = inputHandler;
     }
 
-    public final void setParser(Parser parser) {
+    /**
+     * {@inheritDoc}
+     */
+    public final void setParser(final Parser parser) {
     	this.parser = parser;
     }
 
-	public InputHandler getInputHandler() {
+	public final InputHandler getInputHandler() {
 		return inputHandler;
 	}
 
@@ -107,7 +110,7 @@ public class SingleThreadedWorker implements Worker {
 		return outputHandler;
 	}
 
-	public Parser getParser() {
+	public final Parser getParser() {
 		return parser;
 	}
 }

@@ -7,10 +7,16 @@ import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.OutputHandler;
 import pl.solr.solrla.parser.Parser;
 
+/**
+ * Worker interface.
+ *
+ * @author Marek Rogoziński
+ *
+ */
 public interface Worker {
     /**
      * Add a new collector.
-     * 
+     *
      * @param collector
      *            collector
      */
@@ -18,23 +24,23 @@ public interface Worker {
 
     /**
      * Sets collectors.
-     * 
+     *
      * @param collectors
      *            collectors
      */
     void setCollectors(List<Collector> collectors);
 
     /**
-     * Sets output handler
-     * 
+     * Sets output handler.
+     *
      * @param outputHandler
      *            output handler
      */
     void setOutputHandler(OutputHandler outputHandler);
 
     /**
-     * Sets input handler
-     * 
+     * Sets input handler.
+     *
      * @param inputHandler
      *            input handler
      */
@@ -42,28 +48,28 @@ public interface Worker {
 
     /**
      * Returns input handler.
-     * 
+     *
      * @return input handler
      */
     InputHandler getInputHandler();
 
     /**
-     * Returns output handler
-     * 
+     * Returns output handler.
+     *
      * @return output handler
      */
     OutputHandler getOutputHandler();
 
     /**
      * Returns parser.
-     * 
+     *
      * @return parser
      */
     Parser getParser();
 
     /**
      * Sets parser.
-     * 
+     *
      * @param parser
      *            parser
      */
