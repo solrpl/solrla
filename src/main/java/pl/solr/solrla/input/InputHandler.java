@@ -19,6 +19,4 @@ public interface InputHandler {
 	 */
 	void setLocation(String location);
 
-	String getNextItem();
-
 }

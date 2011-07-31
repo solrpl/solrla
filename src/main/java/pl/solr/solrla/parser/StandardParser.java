@@ -12,7 +12,7 @@ public class StandardParser implements Parser {
      * {@inheritDoc}
      */
 	public LogLine readLine(final InputHandler inputHandler) {
-		String next = inputHandler.getNextItem();
+		String next = null;//inputHandler.getNextItem();
 		if (next == null) {
 			return null;
 		}

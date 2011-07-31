@@ -1,6 +1,6 @@
 package pl.solr.solrla.cli;
 
-import pl.solr.solrla.input.InputHandler;
+import pl.solr.solrla.input.AbstractInputHandler;
 
 /**
  * Trivial implementation of input handler for testing.
@@ -8,16 +8,7 @@ import pl.solr.solrla.input.InputHandler;
  * @author Marek Rogoziński
  *
  */
-public class InputHandlerForTesting implements InputHandler {
-	private String location;
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
+public class InputHandlerForTesting extends AbstractInputHandler {
 
 	public String getNextItem() {
 		// TODO Auto-generated method stub

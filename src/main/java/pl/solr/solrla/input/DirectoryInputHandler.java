@@ -6,28 +6,6 @@ package pl.solr.solrla.input;
  * @author Marek Rogoziński
  *
  */
-public class DirectoryInputHandler implements InputHandler {
-	/** filesystem location, for example: /home/solr/logs/*.log. */
-	private String location;
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public final String getLocation() {
-		return location;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public final void setLocation(final String location) {
-		this.location = location;
-
-	}
-
-	public String getNextItem() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class DirectoryInputHandler extends AbstractInputHandler {
 
 }
