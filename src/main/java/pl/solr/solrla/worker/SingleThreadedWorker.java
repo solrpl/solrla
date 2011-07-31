@@ -1,7 +1,11 @@
 package pl.solr.solrla.worker;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.common.base.Throwables;
 
 import pl.solr.solrla.analyzer.parser.LogLine;
 import pl.solr.solrla.collector.Collector;
@@ -26,21 +30,28 @@ public class SingleThreadedWorker implements Worker {
     private InputHandler inputHandler;
 
     /** Parser. */
-	private Parser parser;	
+	private Parser parser;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void run() {
         LogLine line;
-        while((line = parser.readLine(inputHandler)) != null) {
-            for (Collector col : collectors) {
-                col.collect(line);
-            }
+        for (InputStream stream = inputHandler.nextStream(); stream != null; stream = inputHandler.nextStream()) {
+        	while((line = parser.readLine(stream)) != null) {
+        		for (Collector col : collectors) {
+        			col.collect(line);
+        		}
+        	}
+        	try {
+				stream.close();
+			} catch (IOException e) {
+				throw Throwables.propagate(e);
+			}
         }
     }
-	
-	/** 
+
+	/**
 	 * Constructor.
 	 * @param inputHandler input handler
 	 * @param outputHandler output handler

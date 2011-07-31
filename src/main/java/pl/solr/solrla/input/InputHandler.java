@@ -1,5 +1,7 @@
 package pl.solr.solrla.input;
 
+import java.io.InputStream;
+
 /**
  * Interface for specification of input.
  * @author Marek Rogoziński
@@ -18,5 +20,7 @@ public interface InputHandler {
 	 * @param location input data location
 	 */
 	void setLocation(String location);
+
+	InputStream nextStream();
 
 }
