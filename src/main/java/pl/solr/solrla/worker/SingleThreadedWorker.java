@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Throwables;
+import com.google.common.collect.Lists;
 
 import pl.solr.solrla.analyzer.parser.LogLine;
 import pl.solr.solrla.collector.Collector;
@@ -27,7 +28,7 @@ public class SingleThreadedWorker implements Worker {
 	private static final Logger LOG = LoggerFactory.getLogger(SingleThreadedWorker.class);
 
     /** Collectors. */
-    private List<Collector> collectors;
+    private List<Collector> collectors = Lists.newArrayList();
 
     /** Output handler. */
     private OutputHandler outputHandler;
