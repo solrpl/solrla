@@ -6,7 +6,7 @@ package pl.solr.solrla.collector.result;
  * @author Rafał Kuć
  * 
  */
-public class QueryCollectingResult implements CollectingResult {
+public class QueryCollectingResult extends StringCollectingResult {
     /** Query. */
     private String query;
 
@@ -22,7 +22,7 @@ public class QueryCollectingResult implements CollectingResult {
      *            query execution time
      */
     public QueryCollectingResult(String query, Long queryTime) {
-        super();
+        super(queryTime + "[" + query + "]");
         this.query = query;
         this.queryTime = queryTime;
     }
@@ -33,12 +33,5 @@ public class QueryCollectingResult implements CollectingResult {
 
     public final Long getQueryTime() {
         return queryTime;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String getAsString() {
-        return queryTime + "[" + query + "]";
     }
 }
