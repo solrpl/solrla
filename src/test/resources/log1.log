@@ -1,0 +1,24 @@
+INFO: registering core: 
+2011-07-31 21:27:53 org.apache.solr.servlet.SolrDispatchFilter init
+INFO: user.dir=/home/negativ/Projekty/Dom/Solr/src/solr/solr/example
+2011-07-31 21:27:53 org.apache.solr.servlet.SolrDispatchFilter init
+INFO: SolrDispatchFilter.init() done
+2011-07-31 21:27:53.535:INFO::Started SocketConnector@0.0.0.0:8983
+2011-07-31 21:27:53 org.apache.solr.core.SolrCore execute
+INFO: [] webapp=null path=null params={event=firstSearcher&q=static+firstSearcher+warming+in+solrconfig.xml} hits=0 status=0 QTime=55 
+2011-07-31 21:27:53 org.apache.solr.core.QuerySenderListener newSearcher
+INFO: QuerySenderListener done.
+2011-07-31 21:27:53 org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener newSearcher
+INFO: Loading spell index for spellchecker: default
+2011-07-31 21:27:53 org.apache.solr.core.SolrCore registerSearcher
+INFO: [] Registered new searcher Searcher@6477eb97 main
+2011-07-31 21:28:09 org.apache.solr.core.SolrCore execute
+INFO: [] webapp=/solr path=/admin/system params={wt=json} status=0 QTime=135 
+2011-07-31 21:28:19 org.apache.solr.core.SolrCore execute
+INFO: [] webapp=/solr path=/select/ params={indent=on&start=0&q=solr&version=2.2&rows=10} hits=0 status=0 QTime=1 
+2011-07-31 21:28:26.105:INFO::Shutdown hook executing
+2011-07-31 21:28:26.106:INFO::Graceful shutdown SocketConnector@0.0.0.0:8983
+2011-07-31 21:28:26.106:INFO::Graceful shutdown org.mortbay.jetty.webapp.WebAppContext@2259a735{/solr,file:/home/negativ/Projekty/Dom/Solr/src/solr/solr/example/webapps/solr.war}
+2011-07-31 21:28:27.107:INFO::Stopped SocketConnector@0.0.0.0:8983
+2011-07-31 21:28:27.161:INFO::Shutdown hook complete
+

@@ -10,12 +10,18 @@ import java.io.InputStream;
  *
  */
 public class ClasspathInputHandler extends AbstractInputHandler {
+	/** indicate stream was already processed. */
+	private boolean called = false;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public final InputStream nextStream() {
-		return ClasspathInputHandler.class.getResourceAsStream(getLocation());
+		if (!called) {
+			called = true;
+			return ClasspathInputHandler.class.getResourceAsStream(getLocation());
+		}
+		return null;
 	}
 
 }

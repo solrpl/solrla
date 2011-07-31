@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Throwables;
 
 import pl.solr.solrla.analyzer.parser.LogLine;
@@ -20,6 +23,9 @@ import pl.solr.solrla.parser.Parser;
  *
  */
 public class SingleThreadedWorker implements Worker {
+	/** */
+	private static final Logger LOG = LoggerFactory.getLogger(SingleThreadedWorker.class);
+
     /** Collectors. */
     private List<Collector> collectors;
 
@@ -36,10 +42,15 @@ public class SingleThreadedWorker implements Worker {
 	 * {@inheritDoc}
 	 */
 	public final void run() {
+		LOG.debug("SingleThreadedWorkder.run() called");
         LogLine line;
         for (InputStream stream = inputHandler.nextStream(); stream != null; stream = inputHandler.nextStream()) {
+        	LOG.debug("SingleThreadedWorkder.run(): input stream: " + stream);
         	while ((line = parser.readLine(stream)) != null) {
+        		LOG.debug("SingleThreadedWorkder.run(): input line: " + line);
         		for (Collector col : collectors) {
+        			LOG.debug("SingleThreadedWorkder.run(): collecting line: "
+        					+ line + " with collector: " + col);
         			col.collect(line);
         		}
         	}
