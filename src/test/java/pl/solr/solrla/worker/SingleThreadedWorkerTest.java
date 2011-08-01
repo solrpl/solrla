@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import pl.solr.solrla.collector.MaxQueryTimeCollector;
 import pl.solr.solrla.input.ClasspathInputHandler;
 import pl.solr.solrla.input.InputHandler;
 import pl.solr.solrla.output.OutputHandler;
@@ -22,6 +23,7 @@ public class SingleThreadedWorkerTest {
 		Parser parser = new StandardParser();
 
 		SingleThreadedWorker worker = new SingleThreadedWorker(inputHandler, outputHandler, parser);
+		worker.addCollector(new MaxQueryTimeCollector());
 
 		worker.run();
 	}

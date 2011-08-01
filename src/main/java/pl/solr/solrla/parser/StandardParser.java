@@ -6,7 +6,7 @@ import pl.solr.solrla.analyzer.parser.LogLine;
 import pl.solr.solrla.analyzer.parser.impl.SimpleLogLine;
 import pl.solr.tools.RegexpTool;
 
-/** 
+/**
  * Parser implementation {@link Parser}. 
  */
 public class StandardParser extends AbstractLineParser {
